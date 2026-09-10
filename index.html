@@ -496,7 +496,7 @@
 
     <footer>
       Registre de sources : Master Watchlist SSP (172 organisations, priorités P1/P2 — Maroc public, IFI, UE, ONU, coopération bilatérale, organisations régionales, climat/environnement, implementers privés). Périmètre élargi le 2026-08-10 : secteur privé, commerce/AfCFTA, gouvernance/PPP, digital, compétitivité, en plus de l'économie circulaire/verte/bleue et durabilité. Base source : Google Drive — dossier « South South Partners / Veille Appels d'Offre ». Les décisions « Retenir » / « Écarter », le suivi de soumission et les cases à cocher (éligibilité SSP, identification des experts, préparation des documents) ci-dessus sont propres à cette page et enregistrés dans l'artefact. Recherche élargie de vérification des échéances effectuée le 2026-09-08 (agrégateurs, Wayback Machine, proxy) — voir note par appel d'offre pour le détail ; le portail AfDB bloque tout accès automatisé, une vérification manuelle reste nécessaire pour les EOI AfDB.
-      <p style="margin-top:10px;">Miroir statique publié sur GitHub Pages — les boutons « Retenir » / « Écarter » et les cases à cocher sont désactivés ici (lecture seule) ; utilisez la page source sur claude.ai pour interagir.</p>
+      <p style="margin-top:10px;">Miroir statique publié sur GitHub Pages — ce miroir est en lecture seule (il ne peut pas enregistrer directement). Cliquer sur « Retenir », « Écarter » ou une case à cocher ouvre automatiquement le dashboard interactif sur claude.ai, où l'action peut être confirmée et enregistrée.</p>
     </footer>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -652,7 +652,8 @@
     const cap = await artifactCapPromise;
     if (!cap) {
       listEl.classList.remove("is-saving");
-      showToast("Cette action nécessite d'ouvrir la page publiée sur claude.ai — impossible d'enregistrer votre choix ici.", true);
+      showToast("Ouverture du dashboard interactif sur claude.ai pour enregistrer votre choix…", true);
+      window.open("https://claude.ai/code/artifact/33262d47-1ce1-4839-b997-9615069a48a1", "_blank", "noopener");
       return;
     }
     try {
