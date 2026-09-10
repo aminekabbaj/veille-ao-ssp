@@ -1,0 +1,832 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Veille Appels d'Offre — SSP</title><style id="pageStyle">
+  :root {
+    --paper: #f2f4ef;
+    --paper-raised: #ffffff;
+    --ink: #1b2420;
+    --ink-soft: #4d5951;
+    --line: #d7ddd2;
+    --accent: #3d6657;
+    --accent-soft: #e4ede8;
+    --accent-ink: #244539;
+    --ocean: #2b5c73;
+    --ocean-soft: #e2edf1;
+    --amber: #a3690f;
+    --amber-soft: #f5e9d6;
+    --red: #a8422f;
+    --red-soft: #f5e2dd;
+    --grey-soft: #e7e9e3;
+    --shadow: 0 1px 2px rgba(27,36,32,0.06), 0 6px 20px -8px rgba(27,36,32,0.12);
+    --radius: 10px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12160f;
+      --paper-raised: #191f18;
+      --ink: #e9ede4;
+      --ink-soft: #a6b0a2;
+      --line: #2a322a;
+      --accent: #74bda0;
+      --accent-soft: #1c2c23;
+      --accent-ink: #b6e5cf;
+      --ocean: #7fb8d4;
+      --ocean-soft: #182831;
+      --amber: #e0ab5c;
+      --amber-soft: #2e2513;
+      --red: #e08972;
+      --red-soft: #301f1a;
+      --grey-soft: #202620;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 24px -8px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12160f;
+    --paper-raised: #191f18;
+    --ink: #e9ede4;
+    --ink-soft: #a6b0a2;
+    --line: #2a322a;
+    --accent: #74bda0;
+    --accent-soft: #1c2c23;
+    --accent-ink: #b6e5cf;
+    --ocean: #7fb8d4;
+    --ocean-soft: #182831;
+    --amber: #e0ab5c;
+    --amber-soft: #2e2513;
+    --red: #e08972;
+    --red-soft: #301f1a;
+    --grey-soft: #202620;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 24px -8px rgba(0,0,0,0.5);
+  }
+  :root[data-theme="light"] {
+    --paper: #f2f4ef;
+    --paper-raised: #ffffff;
+    --ink: #1b2420;
+    --ink-soft: #4d5951;
+    --line: #d7ddd2;
+    --accent: #3d6657;
+    --accent-soft: #e4ede8;
+    --accent-ink: #244539;
+    --ocean: #2b5c73;
+    --ocean-soft: #e2edf1;
+    --amber: #a3690f;
+    --amber-soft: #f5e9d6;
+    --red: #a8422f;
+    --red-soft: #f5e2dd;
+    --grey-soft: #e7e9e3;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  header.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1 {
+    font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", "URW Palladio", Georgia, serif;
+    font-weight: 500;
+    font-size: 32px;
+    margin: 2px 0 4px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    max-width: 62ch;
+  }
+  .meta-line {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .stat .num {
+    font-family: ui-serif, Georgia, serif;
+    font-size: 26px;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-ink);
+  }
+  .stat .label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .search {
+    flex: 1 1 220px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .search::placeholder { color: var(--ink-soft); }
+  .search:focus, .chip:focus-visible, select:focus-visible, a:focus-visible, .btn-decide:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+  select {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .filter-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .list.is-saving {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .card {
+    position: relative;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 16px 16px 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: var(--radius) 0 0 var(--radius);
+    background: var(--stripe, var(--grey-soft));
+  }
+  .card.urgency-soon::before { background: var(--red); }
+  .card.urgency-month::before { background: var(--amber); }
+  .card.urgency-open::before { background: var(--accent); }
+  .card.urgency-unknown::before { background: var(--grey-soft); }
+  .card.is-accepted::before { background: var(--accent); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .card-title a { color: var(--ink); text-decoration: none; }
+  .card-title a:hover { color: var(--accent-ink); text-decoration: underline; }
+  .card-source {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .deadline-pill {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .urgency-soon .deadline-pill { background: var(--red-soft); color: var(--red); }
+  .urgency-month .deadline-pill { background: var(--amber-soft); color: var(--amber); }
+  .urgency-open .deadline-pill { background: var(--accent-soft); color: var(--accent-ink); }
+  .urgency-unknown .deadline-pill { background: var(--grey-soft); color: var(--ink-soft); }
+
+  .card-meta {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+  }
+  .tag {
+    font-size: 11.5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .tag.sector-circular_economy { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+  .tag.sector-blue_economy { background: var(--ocean-soft); color: var(--ocean); border-color: transparent; }
+  .tag.sector-green_economy { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+  .tag.sector-sustainability { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+  .tag.sector-private_sector_development { background: var(--amber-soft); color: var(--amber); border-color: transparent; }
+  .tag.sector-trade_integration { background: var(--amber-soft); color: var(--amber); border-color: transparent; }
+  .tag.sector-governance_ppp { background: var(--ocean-soft); color: var(--ocean); border-color: transparent; }
+  .tag.sector-digital_transformation { background: var(--grey-soft); color: var(--ink-soft); border-color: transparent; }
+
+  .partnership-badge {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    background: var(--ocean-soft);
+    color: var(--ocean);
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+    flex-wrap: wrap;
+  }
+  .btn-decide {
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--paper-raised);
+  }
+  .btn-accept { border: 1px solid var(--accent); color: var(--accent-ink); }
+  .btn-accept:hover { background: var(--accent-soft); }
+  .btn-reject { border: 1px solid var(--red); color: var(--red); }
+  .btn-reject:hover { background: var(--red-soft); }
+  .btn-submit { border: 1px solid var(--ocean); color: var(--ocean); }
+  .btn-submit:hover { background: var(--ocean-soft); }
+  .btn-submitted { border: 1px solid var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+  .decision-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    white-space: nowrap;
+  }
+  .progress-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    background: var(--amber-soft);
+    color: var(--amber);
+  }
+  .progress-badge.is-ready { background: var(--ocean-soft); color: var(--ocean); }
+  .progress-badge.is-submitted { background: var(--accent-soft); color: var(--accent-ink); }
+  .action-link {
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+  .confirm-row {
+    background: var(--red-soft);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .confirm-text {
+    font-size: 12.5px;
+    color: var(--red);
+    font-weight: 600;
+    flex: 1 1 auto;
+  }
+  .checklist-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 2px;
+    padding: 10px 12px;
+    background: var(--grey-soft);
+    border-radius: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .check-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .check-item.is-checked { color: var(--ink); font-weight: 600; }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 12px);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+    max-width: 90vw;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  .toast.is-error { background: var(--red); }
+
+  .empty {
+    text-align: center;
+    padding: 48px 12px;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .card-top { flex-direction: column; }
+  }
+</style></head><body><template id="pageShell">
+  <div class="page">
+    <header class="hero">
+      <span class="eyebrow">South South Partners · Veille</span>
+      <h1>Appels d'offre — secteur privé, commerce, gouvernance &amp; économie circulaire/verte/bleue</h1>
+      <p class="subtitle">Suivi des appels d'offre et opportunités de partenariat — secteur privé, commerce/AfCFTA, gouvernance/PPP, digital, compétitivité, économie circulaire/verte/bleue et durabilité — sur les 172 organisations du Master Watchlist SSP (Maroc, MENA, Afrique).</p>
+      <p class="meta-line" id="metaLine"></p>
+    </header>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="toolbar-row">
+      <div>
+        <span class="filter-label">Statut</span>
+        <span class="chip-group" id="statusChips"></span>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div>
+        <span class="filter-label">Secteur</span>
+        <span class="chip-group" id="sectorChips"></span>
+      </div>
+      <div>
+        <span class="filter-label">Trier</span>
+        <select id="sortSelect">
+          <option value="deadline">Échéance (la plus proche)</option>
+          <option value="added">Date d'ajout (récent)</option>
+          <option value="title">Titre (A→Z)</option>
+        </select>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div>
+        <span class="filter-label">Ligne de service</span>
+        <span class="chip-group" id="serviceChips"></span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <input class="search" id="searchInput" type="text" placeholder="Rechercher un titre, un pays, une source…">
+    </div>
+
+    <div class="list" id="list"></div>
+    <div class="empty" id="emptyState" style="display:none;">Aucun appel d'offre ne correspond à ces filtres.</div>
+
+    <footer>
+      Registre de sources : Master Watchlist SSP (172 organisations, priorités P1/P2 — Maroc public, IFI, UE, ONU, coopération bilatérale, organisations régionales, climat/environnement, implementers privés). Périmètre élargi le 2026-08-10 : secteur privé, commerce/AfCFTA, gouvernance/PPP, digital, compétitivité, en plus de l'économie circulaire/verte/bleue et durabilité. Base source : Google Drive — dossier « South South Partners / Veille Appels d'Offre ». Les décisions « Retenir » / « Écarter », le suivi de soumission et les cases à cocher (éligibilité SSP, identification des experts, préparation des documents) ci-dessus sont propres à cette page et enregistrés dans l'artefact. Recherche élargie de vérification des échéances effectuée le 2026-09-08 (agrégateurs, Wayback Machine, proxy) — voir note par appel d'offre pour le détail ; le portail AfDB bloque tout accès automatisé, une vérification manuelle reste nécessaire pour les EOI AfDB.
+      <p style="margin-top:10px;">Miroir statique publié sur GitHub Pages — les boutons « Retenir » / « Écarter » et les cases à cocher sont désactivés ici (lecture seule) ; utilisez la page source sur claude.ai pour interagir.</p>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</template><div id="mount"></div><script>(function main(TENDERS, LAST_UPDATED) {
+  var artifactCapPromise;
+  try { artifactCapPromise = claude.use("artifact"); }
+  catch (e) { artifactCapPromise = Promise.resolve(null); }
+
+  document.getElementById("mount").appendChild(
+    document.getElementById("pageShell").content.cloneNode(true)
+  );
+
+  const SERVICE_LINES = {
+    strategy_planning: "Stratégie & planification",
+    policy_regulatory: "Politiques & réglementation",
+    capacity_building: "Renforcement de capacités",
+    project_management: "Gestion de projet / PIU",
+    research_studies: "Études & recherche",
+    innovation_technology: "Innovation & technologie"
+  };
+  const SECTORS = {
+    circular_economy: "Économie circulaire",
+    green_economy: "Économie verte",
+    blue_economy: "Économie bleue",
+    sustainability: "Durabilité",
+    private_sector_development: "Secteur privé",
+    trade_integration: "Commerce / AfCFTA",
+    governance_ppp: "Gouvernance / PPP",
+    digital_transformation: "Digital"
+  };
+  const CHECK_ITEMS = [
+    ["eligibility", "Éligibilité SSP"],
+    ["experts", "Identification des experts"],
+    ["documents", "Préparation des documents"]
+  ];
+
+  const state = { sector: "all", service: "all", status: "all", search: "", sort: "deadline", confirmingId: null };
+  let toastTimer = null;
+
+  function showToast(msg, isError) {
+    const t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.toggle("is-error", !!isError);
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 4000);
+  }
+
+  function daysUntil(iso) {
+    if (!iso) return null;
+    const ms = new Date(iso).getTime() - Date.now();
+    return Math.ceil(ms / 86400000);
+  }
+
+  function urgencyClass(t) {
+    const d = daysUntil(t.deadline);
+    if (d === null) return "urgency-unknown";
+    if (d < 0) return "urgency-unknown";
+    if (d <= 14) return "urgency-soon";
+    if (d <= 30) return "urgency-month";
+    return "urgency-open";
+  }
+
+  function deadlineLabel(t) {
+    const d = daysUntil(t.deadline);
+    if (d === null) return "Échéance à vérifier";
+    if (d < 0) return "Échéance dépassée";
+    if (d === 0) return "Échéance aujourd'hui";
+    if (d === 1) return "Échéance demain";
+    return `Échéance dans ${d} j`;
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return null;
+    return new Date(iso).toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
+  }
+
+  function checklistDone(t) {
+    const c = t.checklist || {};
+    return CHECK_ITEMS.filter(([key]) => c[key]).length;
+  }
+
+  function buildChips(container, dict, key) {
+    const all = document.createElement("button");
+    all.className = "chip";
+    all.textContent = "Tous";
+    all.setAttribute("aria-pressed", state[key] === "all" ? "true" : "false");
+    all.onclick = () => { state[key] = "all"; render(); };
+    container.appendChild(all);
+    Object.entries(dict).forEach(([id, label]) => {
+      const chip = document.createElement("button");
+      chip.className = "chip";
+      chip.textContent = label;
+      chip.setAttribute("aria-pressed", state[key] === id ? "true" : "false");
+      chip.onclick = () => { state[key] = id; render(); };
+      container.appendChild(chip);
+    });
+  }
+
+  function buildStatusChips(container) {
+    const options = [["all", "Tous"], ["pending", "À traiter"], ["accepted", "Retenus"], ["submitted", "Soumis"]];
+    options.forEach(([id, label]) => {
+      const chip = document.createElement("button");
+      chip.className = "chip";
+      chip.textContent = label;
+      chip.dataset.statusId = id;
+      chip.setAttribute("aria-pressed", state.status === id ? "true" : "false");
+      chip.onclick = () => { state.status = id; render(); };
+      container.appendChild(chip);
+    });
+  }
+
+  function renderStats() {
+    const open = TENDERS.filter(t => { const d = daysUntil(t.deadline); return d === null || d >= 0; });
+    const soon = TENDERS.filter(t => { const d = daysUntil(t.deadline); return d !== null && d >= 0 && d <= 14; });
+    const sources = new Set(TENDERS.map(t => t.org_source)).size;
+    const retained = TENDERS.filter(t => t.decision === "accepted").length;
+    const submitted = TENDERS.filter(t => t.submitted).length;
+    const stats = [
+      { num: open.length, label: "Opportunités suivies" },
+      { num: soon.length, label: "Échéance < 14 j" },
+      { num: retained, label: "Retenus" },
+      { num: submitted, label: "Soumis" },
+      { num: sources, label: "Bailleurs / sources" },
+      { num: TENDERS.filter(t => t.date_added === LAST_UPDATED).length, label: "Nouveaux cette semaine" }
+    ];
+    const el = document.getElementById("stats");
+    el.innerHTML = "";
+    stats.forEach(s => {
+      const card = document.createElement("div");
+      card.className = "stat";
+      card.innerHTML = `<div class="num">${s.num}</div><div class="label">${s.label}</div>`;
+      el.appendChild(card);
+    });
+  }
+
+  function buildFullHtml(tendersArr, lastUpdated) {
+    const styleText = document.getElementById("pageStyle").textContent;
+    const shellHtml = document.getElementById("pageShell").outerHTML;
+    const json = JSON.stringify(tendersArr).replace(/</g, "\\u003c");
+    const fnSrc = main.toString().replace(/<\/script/gi, "<\\/script");
+    const openTag = "<" + "script>";
+    const closeTag = "<" + "/script>";
+    const inline = openTag + "(" + fnSrc + ")(" + json + "," + JSON.stringify(lastUpdated) + ");" + closeTag;
+    return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Veille Appels d'Offre — SSP</title><style id="pageStyle">${styleText}</style></head><body>${shellHtml}<div id="mount"></div>${inline}</body></html>`;
+  }
+
+  async function persist(newTenders, pendingLabel) {
+    const listEl = document.getElementById("list");
+    listEl.classList.add("is-saving");
+    if (pendingLabel) showToast(pendingLabel);
+    const cap = await artifactCapPromise;
+    if (!cap) {
+      listEl.classList.remove("is-saving");
+      showToast("Cette action nécessite d'ouvrir la page publiée sur claude.ai — impossible d'enregistrer votre choix ici.", true);
+      return;
+    }
+    try {
+      await cap.publish(buildFullHtml(newTenders, LAST_UPDATED));
+      // Publish succeeded: this view (and every other open view) reloads
+      // automatically to the new version, so no local re-render is needed.
+    } catch (err) {
+      listEl.classList.remove("is-saving");
+      const code = err && err.code;
+      if (code === "conflict") return; // a reload to the winning version is already underway
+      if (code === "not_writer" || code === "not_granted" || code === "capability_disabled" || code === "capability_removed") {
+        showToast("Vous êtes en lecture seule sur cette page : impossible d'enregistrer votre choix.", true);
+      } else {
+        showToast("Échec de l'enregistrement (" + (code || "erreur inconnue") + "). Réessayez.", true);
+      }
+    }
+  }
+
+  function onAccept(id) {
+    const copy = TENDERS.map(t => t.id === id ? Object.assign({}, t, { decision: "accepted" }) : t);
+    persist(copy, "Enregistrement…");
+  }
+
+  function onRevert(id) {
+    const copy = TENDERS.map(t => t.id === id ? Object.assign({}, t, { decision: null }) : t);
+    persist(copy, "Enregistrement…");
+  }
+
+  function onRejectClick(id) {
+    state.confirmingId = id;
+    render();
+  }
+
+  function onCancelReject() {
+    state.confirmingId = null;
+    render();
+  }
+
+  function onConfirmReject(id) {
+    state.confirmingId = null;
+    const copy = TENDERS.filter(x => x.id !== id);
+    persist(copy, "Suppression…");
+  }
+
+  function onToggleCheck(id, key) {
+    const copy = TENDERS.map(t => {
+      if (t.id !== id) return t;
+      const c = Object.assign({}, t.checklist || {});
+      c[key] = !c[key];
+      return Object.assign({}, t, { checklist: c });
+    });
+    persist(copy, "Enregistrement…");
+  }
+
+  function onToggleSubmitted(id) {
+    const copy = TENDERS.map(t => t.id === id ? Object.assign({}, t, { submitted: !t.submitted }) : t);
+    persist(copy, "Enregistrement…");
+  }
+
+  function render() {
+    document.querySelectorAll("#sectorChips .chip").forEach((c, i) => {
+      const id = i === 0 ? "all" : Object.keys(SECTORS)[i - 1];
+      c.setAttribute("aria-pressed", state.sector === id ? "true" : "false");
+    });
+    document.querySelectorAll("#serviceChips .chip").forEach((c, i) => {
+      const id = i === 0 ? "all" : Object.keys(SERVICE_LINES)[i - 1];
+      c.setAttribute("aria-pressed", state.service === id ? "true" : "false");
+    });
+    document.querySelectorAll("#statusChips .chip").forEach(c => {
+      c.setAttribute("aria-pressed", state.status === c.dataset.statusId ? "true" : "false");
+    });
+
+    let items = TENDERS.filter(t => {
+      if (state.sector !== "all" && !t.sector_tags.includes(state.sector)) return false;
+      if (state.service !== "all" && !t.service_line_tags.includes(state.service)) return false;
+      if (state.status === "pending" && t.decision === "accepted") return false;
+      if (state.status === "accepted" && t.decision !== "accepted") return false;
+      if (state.status === "submitted" && !t.submitted) return false;
+      if (state.search) {
+        const q = state.search.toLowerCase();
+        const hay = `${t.title} ${t.country_region} ${t.org_source}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    items.sort((a, b) => {
+      if (state.sort === "title") return a.title.localeCompare(b.title);
+      if (state.sort === "added") return b.date_added.localeCompare(a.date_added);
+      const da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+      const db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+      return da - db;
+    });
+
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+    document.getElementById("emptyState").style.display = items.length ? "none" : "block";
+
+    items.forEach(t => {
+      const uc = urgencyClass(t);
+      const isAccepted = t.decision === "accepted";
+      const isConfirming = state.confirmingId === t.id;
+      const card = document.createElement("article");
+      card.className = `card ${uc}${isAccepted ? " is-accepted" : ""}`;
+      const tagsHtml = [
+        ...t.sector_tags.map(s => `<span class="tag sector-${s}">${SECTORS[s] || s}</span>`),
+        ...t.service_line_tags.map(s => `<span class="tag">${SERVICE_LINES[s] || s}</span>`)
+      ].join("");
+      const dl = fmtDate(t.deadline);
+      const isPartnership = t.category === "partnership_opportunity";
+      const badgeHtml = isPartnership
+        ? `<span class="partnership-badge">Partenariat</span>`
+        : `<span class="deadline-pill">${deadlineLabel(t)}</span>`;
+      let actionsHtml;
+      if (isConfirming) {
+        actionsHtml = `<div class="card-actions confirm-row"><span class="confirm-text">Écarter définitivement de la liste ?</span><button type="button" class="btn-decide btn-reject" data-action="confirm-reject" data-id="${t.id}">Oui, écarter</button><button type="button" class="action-link" data-action="cancel-reject" data-id="${t.id}">Annuler</button></div>`;
+      } else if (isAccepted) {
+        const c = t.checklist || {};
+        const done = checklistDone(t);
+        const submitted = !!t.submitted;
+        const progClass = submitted ? "is-submitted" : (done === 3 ? "is-ready" : "");
+        const progLabel = submitted ? "✓ Soumissionné" : (done === 3 ? "Prêt à soumettre" : `En préparation (${done}/3)`);
+        const checksHtml = CHECK_ITEMS.map(([key, label]) => `<label class="check-item${c[key] ? " is-checked" : ""}"><input type="checkbox" data-check="${key}" data-id="${t.id}" ${c[key] ? "checked" : ""}> ${label}</label>`).join("");
+        actionsHtml = `
+          <div class="card-actions">
+            <span class="progress-badge ${progClass}">${progLabel}</span>
+            <button type="button" class="btn-decide ${submitted ? "btn-submitted" : "btn-submit"}" data-action="toggle-submitted" data-id="${t.id}">${submitted ? "✓ Soumissionné" : "Marquer comme soumissionné"}</button>
+            <button type="button" class="action-link" data-action="revert" data-id="${t.id}">retirer des retenus</button>
+          </div>
+          <div class="checklist-row">${checksHtml}</div>`;
+      } else {
+        actionsHtml = `<div class="card-actions"><button type="button" class="btn-decide btn-accept" data-action="accept" data-id="${t.id}">✓ Retenir</button><button type="button" class="btn-decide btn-reject" data-action="reject" data-id="${t.id}">✕ Écarter</button></div>`;
+      }
+      card.innerHTML = `
+        <div class="card-top">
+          <div>
+            <div class="card-title"><a href="${t.url}" target="_blank" rel="noopener">${t.title}</a></div>
+            <div class="card-source">${t.org_source} · ${t.country_region}</div>
+          </div>
+          ${badgeHtml}
+        </div>
+        <div class="card-meta">${dl ? `Date limite : ${dl}. ` : ""}${t.deadline_note || ""}</div>
+        <div class="card-tags">${tagsHtml}</div>
+        ${actionsHtml}
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  document.getElementById("list").addEventListener("click", e => {
+    const btn = e.target.closest("[data-action]");
+    if (!btn) return;
+    const id = btn.dataset.id;
+    if (btn.dataset.action === "accept") onAccept(id);
+    else if (btn.dataset.action === "reject") onRejectClick(id);
+    else if (btn.dataset.action === "confirm-reject") onConfirmReject(id);
+    else if (btn.dataset.action === "cancel-reject") onCancelReject();
+    else if (btn.dataset.action === "revert") onRevert(id);
+    else if (btn.dataset.action === "toggle-submitted") onToggleSubmitted(id);
+  });
+
+  document.getElementById("list").addEventListener("change", e => {
+    const box = e.target.closest("input[type=checkbox][data-check]");
+    if (!box) return;
+    onToggleCheck(box.dataset.id, box.dataset.check);
+  });
+
+  buildStatusChips(document.getElementById("statusChips"));
+  buildChips(document.getElementById("sectorChips"), SECTORS, "sector");
+  buildChips(document.getElementById("serviceChips"), SERVICE_LINES, "service");
+  document.getElementById("searchInput").addEventListener("input", e => { state.search = e.target.value; render(); });
+  document.getElementById("sortSelect").addEventListener("change", e => { state.sort = e.target.value; render(); });
+  document.getElementById("metaLine").textContent = `Dernière mise à jour : ${fmtDate(LAST_UPDATED + "T00:00:00")} · ${TENDERS.length} appels d'offre suivis · Mise à jour automatique hebdomadaire`;
+
+  renderStats();
+  render();
+})([{"id":"undp-bwa-00283","title":"Consultancy for Circular Economy Assessment, Roadmap, and Capacity Building","org_source":"UNDP","category":"tender","country_region":"Botswana","url":"https://procurement-notices.undp.org/view_negotiation.cfm?nego_id=48358","deadline":"2026-08-21T03:00:00-05:00","deadline_note":"21 août 2026, 3h00 (heure de New York) — confirmé","sector_tags":["circular_economy"],"service_line_tags":["strategy_planning","research_studies","capacity_building"],"date_added":"2026-08-10","decision":"accepted","checklist":{"eligibility":true,"experts":true,"documents":true},"submitted":true},{"id":"mtedd-plan-urgence-pollution-marine","title":"Étude relative à la mise à jour du Plan d'Urgence National de Lutte contre la Pollution Marine Accidentelle","org_source":"Ministère de la Transition Énergétique et du Développement Durable (réf. 12/DECLP/2026)","category":"tender","country_region":"Maroc","url":"https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch","deadline":"2026-10-20","deadline_note":"Dépôt 20/10/2026 10h30. Réf. 12/DECLP/2026","sector_tags":["blue_economy"],"service_line_tags":["research_studies","policy_regulatory"],"date_added":"2026-08-10","decision":"accepted"},{"id":"anda-plan-aquacole-souss-massa","title":"Réalisation d'une étude portant sur l'élaboration d'un plan régional d'aménagement et de gestion aquacole et du projet des structures aquacoles de la région de Souss-Massa","org_source":"Agence Nationale pour le Développement de l'Aquaculture (ANDA), réf. 22/2026/ANDA","category":"tender","country_region":"Maroc","url":"https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch","deadline":"2026-10-15","deadline_note":"Dépôt 15/10/2026 10h00. Réf. 22/2026/ANDA","sector_tags":["blue_economy"],"service_line_tags":["strategy_planning","research_studies"],"date_added":"2026-08-10","decision":"accepted"},{"id":"giz-observation-environnement-mobilite","title":"Renforcement du système national d'observation de l'environnement par un dispositif de suivi de la mobilité durable","org_source":"GIZ, réf. DAO 7000007443","category":"tender","country_region":"Maroc","url":"https://tanmia.ma/24-04-2026/85662/","deadline":null,"deadline_note":"Confirmé actif (couverture presse LesEco.ma/Le Matin/Le360, avril 2026) mais deadline non exposée sur la page ni dans le DAO (PDF scanné). Recherche élargie du 08/09/2026 infructueuse — à vérifier en téléchargeant le dossier complet sur tanmia.ma/24-04-2026/85662/","sector_tags":["green_economy","digital_transformation"],"service_line_tags":["research_studies","innovation_technology"],"date_added":"2026-08-10","decision":"accepted"},{"id":"afdb-pifd-nafad-infra-feasibility","title":"EOI - NAFAD Infrastructure Investment Facility Feasibility Study","org_source":"African Development Bank (PIFD — Private Sector, Infrastructure and Industrialization Dept.)","category":"tender","country_region":"Afrique (continental)","url":"https://www.afdb.org/en/consultants/eoi-nafad-infrastructure-investment-facility-feasibility-study-pifd-93914","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 (agrégateurs dgMarket/DevelopmentAid, Wayback Machine, proxy) — page AfDB bloquée en lecture automatique sur tous les canaux testés. Lié au New African Financial Architecture for Development, Abidjan Consensus du 9 avril 2026. Vérification manuelle nécessaire sur afdb.org.","sector_tags":["private_sector_development"],"service_line_tags":["research_studies","strategy_planning"],"date_added":"2026-08-10","decision":null},{"id":"afdb-pifd-scf-market-validation","title":"EOI - Consulting Firm for Market Validation for the Introduction of Supply Chain Finance (SCF) in Africa","org_source":"African Development Bank (PIFD — Financial Sector Development)","category":"tender","country_region":"Afrique (continental)","url":"https://www.afdb.org/en/consultants/eoi-consulting-firm-market-validation-introduction-supply-chain-finance-scf-africa-pifd-95120","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 (agrégateurs, Wayback Machine, proxy) — page AfDB bloquée en lecture automatique. Vérification manuelle nécessaire sur afdb.org.","sector_tags":["private_sector_development"],"service_line_tags":["research_studies"],"date_added":"2026-08-10","decision":null},{"id":"marocpme-ami-pacte-competitivite-tpme","title":"Appel à Manifestation d'Intérêt PACTE Compétitivité — sélection de prestataires pour l'accompagnement des TPME (Programme #3 Compétitivité, PACTE TPME)","org_source":"Maroc PME","category":"tender","country_region":"Maroc","url":"https://marocpme.gov.ma/wp-content/uploads/2026/05/PTC_AMI-PACTE-Competitivite-.pdf","deadline":null,"deadline_note":"Programme confirmé actif (Pacte TPME lancé 27/02/2026, plan 2026-2030, large couverture presse). PDF de l'AMI (réf. REF-40/MPS-MT-02/V02/052026) non exploitable automatiquement (image/certificat). Recherche élargie du 08/09/2026 infructueuse — à vérifier directement sur marocpme.gov.ma","sector_tags":["private_sector_development"],"service_line_tags":["capacity_building","strategy_planning"],"date_added":"2026-08-18","decision":null},{"id":"unido-mar-ndc3-cement-financing-strategy","title":"Financing strategy for implementation of Morocco's NDC 3.0 cement sector mitigation measures — UNIDO Partnership for Net Zero Industry","org_source":"UNIDO","category":"tender","country_region":"Maroc","url":"https://www.unido.org/get-involved/procurement/procurement-opportunities","deadline":null,"deadline_note":"Deadline non confirmée. Recherche élargie du 08/09/2026 sur UNGM a trouvé des avis apparentés sous le même SAP ID 230085 (ex. notice UNGM #283110 « MRV system NDC 3.0 Morocco », deadline 02/12/2025 déjà close) mais pas l'avis exact « financing strategy cement ». À vérifier sur ungm.org (rechercher « SAP 230085 Morocco ») ou procurement.unido.org","sector_tags":["green_economy","sustainability"],"service_line_tags":["strategy_planning","policy_regulatory","research_studies"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-93260-acea-standards-harmonization","title":"EOI - Consultancy Firm to Identify Priority Standards for Harmonization Across ACEA's Five Big Bets","org_source":"AfDB (PECG / Africa Circular Economy Alliance)","category":"tender","country_region":"Afrique (multi-pays)","url":"https://www.afdb.org/en/consultants/eoi-consultancy-firm-identify-priority-standards-harmonization-across-aceas-five-big-bets-pecg-93260","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 (dgMarket, DevelopmentAid, Wayback Machine, proxy jina.ai — tous bloqués ou sans miroir). Programme confirmé actif via presse récente (allAfrica, fundsforNGOs, 18-19 août 2026). Vérification manuelle nécessaire sur afdb.org.","sector_tags":["circular_economy","trade_integration"],"service_line_tags":["research_studies","policy_regulatory"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-95668-ce-roadmaps-4countries","title":"EOI - Technical Assistance to develop National Circular Economy Roadmaps for Angola, Liberia, Madagascar, and Senegal","org_source":"AfDB (PECG)","country_region":"Angola, Liberia, Madagascar, Sénégal","category":"tender","url":"https://www.afdb.org/en/consultants/eoi-technical-assistance-develop-national-circular-economy-roadmaps-angola-liberia-madagascar-and-senegal-pecg-95668","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée sur tous les canaux testés. Presse du 18/08/2026 confirme que ces 4 pays sont en phase de développement de leur feuille de route (programme actif). Vérification manuelle nécessaire sur afdb.org.","sector_tags":["circular_economy"],"service_line_tags":["strategy_planning","policy_regulatory","capacity_building"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-95665-circular-procurement-mauritius","title":"EOI - Technical Assistance to Support the Development and Operationalization of a Circular Public Procurement Framework in Mauritius","org_source":"AfDB (PECG)","category":"tender","country_region":"Maurice","url":"https://www.afdb.org/en/consultants/eoi-technical-assistance-support-development-and-operationalization-circular-public-procurement-framework-mauritius-pecg-95665","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée sur tous les canaux testés. Presse du 18/08/2026 indique que Maurice est déjà entrée en phase de mise en œuvre (ce marché pourrait donc être en cours d'exécution ou proche de sa clôture). Vérification manuelle urgente recommandée sur afdb.org.","sector_tags":["circular_economy","governance_ppp"],"service_line_tags":["policy_regulatory","capacity_building"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-95664-ce-benin","title":"EOI - Assistance Technique pour l'opérationnalisation du Plan d'action pour l'économie circulaire et le développement de projets d'investissement circulaires au Bénin","org_source":"AfDB (PECG)","category":"tender","country_region":"Bénin","url":"https://www.afdb.org/en/consultants/eoi-assistance-technique-pour-loperationnalisation-du-plan-daction-pour-leconomie-circulaire-et-le-developpement-de-projets-dinvestissement-circulaires-au-benin-pecg-95664","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée sur tous les canaux testés. Presse du 18/08/2026 indique que le Bénin est déjà entré en phase de mise en œuvre de son plan d'action (lancé février 2026) — ce marché pourrait être en cours d'exécution ou proche de sa clôture. Vérification manuelle urgente recommandée sur afdb.org.","sector_tags":["circular_economy"],"service_line_tags":["strategy_planning","policy_regulatory"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-95667-epr-plastic-ethiopia","title":"EOI - Technical Assistance to Develop a National Extended Producer Responsibility (EPR) Framework for Plastic Waste in Ethiopia","org_source":"AfDB (PECG)","category":"tender","country_region":"Éthiopie","url":"https://www.afdb.org/fr/consultants/eoi-technical-assistance-develop-national-extended-producer-responsibility-epr-framework-plastic-waste-ethiopia-pecg-95667","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée sur tous les canaux testés. Presse du 18/08/2026 indique que l'Éthiopie est déjà entrée en phase de mise en œuvre — ce marché pourrait être en cours d'exécution ou proche de sa clôture. Vérification manuelle urgente recommandée sur afdb.org.","sector_tags":["circular_economy","governance_ppp"],"service_line_tags":["policy_regulatory","capacity_building"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-93000-psd-finance-climate-specialist","title":"EOI - Individual Consultant to act as Private Sector Development Finance and Climate Partnerships Specialist","org_source":"AfDB (PECG)","category":"tender","country_region":"Afrique (régional)","url":"https://www.afdb.org/en/consultants/eoi-individual-consultant-act-private-sector-development-finance-and-climate-partnerships-specialist-pecg-93000","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 (dgMarket, DevelopmentAid, Wayback Machine, proxy) — page AfDB bloquée en lecture automatique sur tous les canaux testés. Vérification manuelle nécessaire sur afdb.org.","sector_tags":["private_sector_development","green_economy"],"service_line_tags":["strategy_planning","project_management"],"date_added":"2026-08-18","decision":null},{"id":"afdb-pecg-95637-climate-green-finance-consultant","title":"EOI - Regional Climate Change and Green Finance Consultant","org_source":"AfDB (PECG)","category":"tender","country_region":"Afrique (régional)","url":"https://www.afdb.org/en/consultants/eoi-regional-climate-change-and-green-finance-consultant-pecg-95637","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée en lecture automatique sur tous les canaux testés (fetch direct, proxy, Wayback Machine). Vérification manuelle nécessaire sur afdb.org.","sector_tags":["green_economy","sustainability"],"service_line_tags":["strategy_planning","policy_regulatory"],"date_added":"2026-08-18","decision":null},{"id":"afdb-rdri-95501-risf-consultations","title":"EOI - Stakeholder Consultations with Private Sector and Youth for the Regional Integration Strategic Framework (RISF) 2026-2033","org_source":"AfDB (RDRI)","category":"tender","country_region":"Afrique (régional)","url":"https://www.afdb.org/en/consultants/eoi-stakeholder-consultations-private-sector-and-youth-risf-2026-2033-rdri-95501","deadline":null,"deadline_note":"Deadline introuvable malgré recherche élargie du 08/09/2026 — page AfDB bloquée en lecture automatique sur tous les canaux testés. Contexte confirmé : l'AfDB prépare le nouveau cadre RISF 2026-2033 avec consultations de la société civile en cours. Vérification manuelle nécessaire sur afdb.org.","sector_tags":["private_sector_development","trade_integration"],"service_line_tags":["strategy_planning","research_studies"],"date_added":"2026-08-18","decision":null}],"2026-09-08");</script></body></html>
