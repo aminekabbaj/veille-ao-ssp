@@ -1,0 +1,17 @@
+{
+  "source": "OneDrive for Business (southsouthpartners291-my.sharepoint.com), user aminekabbaj",
+  "driveId": "b!EMLumwmA5EW_pHMo_LPIekLPfVFIPSxMq_dMzuJhOZumRQLoZh39TIDwae7zQnTn",
+  "last_pull": "2026-10-07",
+  "artifacts": [
+    {"repo_path": "index.html", "drive_path": "South South Partners/Veille AO et Business Development/veille_ao_dashboard_mirror_2026-10-02.html", "itemId": "01AIAZBYV3NG5ZTHMPYNG2CLBPUZF34MEL", "direction": "repo -> drive (dashboard is authored in the repo; drive copy is a read-only mirror)", "status": "pulled copy in ssp-drive/ differs from index.html only in the footer credits paragraph"},
+    {"repo_path": "ssp-drive/veille_ao_dashboard_mirror_2026-10-02.html", "itemId": "01AIAZBYV3NG5ZTHMPYNG2CLBPUZF34MEL", "direction": "drive -> repo", "status": "synced"},
+    {"repo_path": "ssp-drive/veille_ao_database_2026-09-28g.json", "drive_path": "Claude/veille_ao_database_2026-09-28g.json", "itemId": "01AIAZBYWH2RH4UQR77NF2HPFNFJSPDBKO", "direction": "drive -> repo", "status": "synced (latest of 9 dated snapshots 2026-09-08..09-28g)"},
+    {"repo_path": "ssp-drive/files/requirements.txt", "drive_path": "South South Partners/Veille AO et Business Development/files/requirements.txt", "itemId": "01AIAZBYX3I6SYP2S42NE25XIQ5PKH5NMP", "direction": "drive -> repo", "status": "synced"}
+  ],
+  "not_synced": [
+    {"drive_path": "South South Partners/Veille AO et Business Development/files/ssp_veille.py", "itemId": "01AIAZBYSW5J7UERQF75ALB4HUCRJM3UEZ", "reason": "connector cannot read .py content"},
+    {"drive_path": "South South Partners/Veille AO et Business Development/files/config.yaml", "itemId": "01AIAZBYXLUT7JDXLZEZG2FBY7R3QPKQRM", "reason": "connector cannot read .yaml content"},
+    {"drive_path": "South South Partners/Partners/Veille SSP - Appel d'offre/CR_Suivi_Appels_Offre_SSP.xlsx", "itemId": "01AIAZBYSAMJ32WV26YVA3OK7TQK26N7X7", "reason": "binary spreadsheet, tracked on drive (modified 2026-10-07); not copied"},
+    {"drive_path": "Claude/ssp_master_watchlist.json", "reason": "referenced by the dashboard as org registry; not located/pulled yet"}
+  ]
+}
